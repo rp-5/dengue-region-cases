@@ -34,87 +34,46 @@ public class RegionController {
         return mv;
     }
 
-    // @PostMapping("/form/region/save")
-    // public String saveForm(@Valid Region region, BindingResult result, RedirectAttributes redirect) {
-
-    //     if(result.hasErrors()){
-    //         redirect.addFlashAttribute("mensagem", "Verifique os campos obrigatórios");
-    //         return "redirect:/form/region-register";
-    //     }
-
-    //     this.regionService.save(region);
-    //     return "redirect:/list/region";
-    // }
-
-    @RequestMapping(value = "/form/region/save", method =  RequestMethod.POST)
-    public ResponseEntity<String> Post(@Valid @RequestBody Region region)
-    {
-        try{
-        this.regionService.save(region);
-        return new ResponseEntity<String>("Cadastrado com sucesso", HttpStatus.OK);
-        }catch(Error e){
-        return new ResponseEntity<String>("Erro ao salvar", HttpStatus.BAD_REQUEST);
+    @RequestMapping(value = "/form/region/save", method = RequestMethod.POST)
+    public ResponseEntity<String> Post(@Valid @RequestBody Region region) {
+        try {
+            this.regionService.save(region);
+            return new ResponseEntity<String>("Cadastrado com sucesso", HttpStatus.OK);
+        } catch (Error e) {
+            return new ResponseEntity<String>("Erro ao salvar", HttpStatus.BAD_REQUEST);
         }
-        
+
     }
 
     @PostMapping("/edit/save")
-    public String saveEdit(@Valid Region region, BindingResult result, RedirectAttributes redirect){
+    public String saveEdit(@Valid Region region, BindingResult result, RedirectAttributes redirect) {
 
         this.regionService.save(region);
         return "redirect:/list/region";
     }
-
-    // @GetMapping("/list/region")
-    // public ModelAndView getList(){
-    //     List<Region> regionList = this.regionService.findAll();
-    //     ModelAndView mv = new ModelAndView("regionList");
-    //     mv.addObject("regionList", regionList);
-    //     return mv;
-    // }
 
     @RequestMapping(value = "/list/region", method = RequestMethod.GET)
     public ResponseEntity<List<Region>> Get() {
         return new ResponseEntity<List<Region>>(regionService.findAll(), HttpStatus.OK);
     }
 
-    // @PostMapping("/edit/region/{id}")
-    // public ModelAndView getEdit(@PathVariable("id") Long id){
-    //     ModelAndView mv = new ModelAndView("regionEdit");
-    //     List<Region> regionList = this.regionService.findAll();
-    //     mv.addObject("regionList", regionList);
-
-    //     Region region = this.regionService.findById(id);
-    //     mv.addObject("region", region);
-
-    //     return mv;
-    // }
-
     @PutMapping(value = "/edit/region/{id}")
-    public ResponseEntity<String> Put(@PathVariable(value = "id") long id, @Valid @RequestBody Region oldRegion)
-    {
-        try{
-        regionService.save(oldRegion);
-        return new ResponseEntity<String>("Editado com sucesso", HttpStatus.OK);
-        }catch(Error e){
-        return new ResponseEntity<String>("Erro ao atualizar", HttpStatus.BAD_REQUEST); 
+    public ResponseEntity<String> Put(@PathVariable(value = "id") long id, @Valid @RequestBody Region oldRegion) {
+        try {
+            regionService.save(oldRegion);
+            return new ResponseEntity<String>("Editado com sucesso", HttpStatus.OK);
+        } catch (Error e) {
+            return new ResponseEntity<String>("Erro ao atualizar", HttpStatus.BAD_REQUEST);
         }
-        
+
     }
 
-    // @PostMapping("/delete/region/{id}")
-    // public String delete(@PathVariable("id")Long id){
-    //     this.regionService.delete(id);
-    //     return "redirect:/list/region";
-    // }
-
     @DeleteMapping(value = "/delete/region/{id}")
-    public ResponseEntity<Object> Delete(@PathVariable("id")Long id)
-    {
-        try{
-        this.regionService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-        }catch(Error e){
+    public ResponseEntity<Object> Delete(@PathVariable("id") Long id) {
+        try {
+            this.regionService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Error e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

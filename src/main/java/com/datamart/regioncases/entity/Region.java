@@ -20,36 +20,34 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Table(name="region")
-@Entity(name="region")
+@Table(name = "region")
+@Entity(name = "region")
 
 public class Region {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotBlank
-    @Column(name="address")
+    @Column(name = "address")
     private String address;
-    
+
     @NotBlank
-    @Column(name= "district")
+    @Column(name = "district")
     private String district;
-    
+
     @NotBlank
-    @Column(name="city")
+    @Column(name = "city")
     private String city;
 
-    @Column(name="santading_water")
-    // private Boolean standingWater;
+    @Column(name = "santading_water")
     private String santading_water;
 
-    @Column(name="mosquito_larva")
-    // private Boolean mosquitoLarva;
+    @Column(name = "mosquito_larva")
     private String mosquito_larva;
 
-    public Region(String address, String district, String city, String santading_water, String mosquito_larva){
+    public Region(String address, String district, String city, String santading_water, String mosquito_larva) {
         this.address = address;
         this.district = district;
         this.city = city;
