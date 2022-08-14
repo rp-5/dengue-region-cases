@@ -1,5 +1,7 @@
 package com.datamart.regioncases.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,11 +49,15 @@ public class Region {
     @Column(name = "mosquito_larva")
     private String mosquito_larva;
 
-    public Region(String address, String district, String city, String santading_water, String mosquito_larva) {
+    @Column(name = "date")
+    private Date date;
+
+    public Region(String address, String district, String city, String santading_water, String mosquito_larva, Date date) {
         this.address = address;
         this.district = district;
         this.city = city;
         this.santading_water = santading_water;
         this.mosquito_larva = mosquito_larva;
+        this.date = date;
     }
 }
